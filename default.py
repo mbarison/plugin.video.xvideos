@@ -69,7 +69,9 @@ def show_latest():
     for u in urls:
         t,f,i = getItems(u)
 
-        items.append({'label': t, 'path': plugin.url_for("play_video",url=f), 'thumbnail' : i})
+        items.append({'label': t, 'path': f, 'thumbnail' : i, 'is_playable': True})
+        
+    print items
         
     return items
 
@@ -84,7 +86,7 @@ def show_best():
     for u in urls:
         t,f,i = getItems(u)
 
-        items.append({'label': t, 'path': plugin.url_for("play_video",url=f), 'thumbnail' : i})
+        items.append({'label': t, 'path': f, 'thumbnail' : i, 'is_playable': True})
         
     return items
 
@@ -102,7 +104,7 @@ def show_profile(nm):
     for u in urls:
         t,f,i = getItems(u)
 
-        items.append({'label': t, 'path': plugin.url_for("play_video",url=f), 'thumbnail' : i})
+        items.append({'label': t, 'path': f, 'thumbnail' : i, 'is_playable': True})
         
     return items
 
@@ -134,13 +136,14 @@ def search():
     for u in urls:
         t,f,i = getItems(u)
 
-        items.append({'label': t, 'path': plugin.url_for("play_video",url=f), 'thumbnail' : i})
+        items.append({'label': t, 'path': f, 'thumbnail' : i, 'is_playable': True})
         
     return items
 
-@plugin.route('/play_video/<url>/')
-def play_video(url):
-    plugin.log.info('Playing url: %s' % url)
-    plugin.set_resolved_url(url)
+#@plugin.route('/play_video/<url>/')
+#def play_video(url):
+#     url = urllib.unquote(url)
+#     plugin.log.info('Playing url: %s' % url)
+#     plugin.set_resolved_url(url)
 
 plugin.run()
